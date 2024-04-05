@@ -27,11 +27,13 @@ function startTitleAnim() {
     title.style.top = "0px"
     title.style.transition = "all 0.5s, transform 2s"
     title.style.position = "relative"
+    title.style.transform = "rotateX(0.8turn)"
     title.style.textShadow = "4px 24px 33px #fff"
     document.querySelector("#base").appendChild(t)
     setTimeout(()=>{
         title.style.opacity = "1"
         title.style.top = "45vh"
+        title.style.transform = "rotateX(1turn)"
         title.style.textShadow = "4px 4px 64px #fff"
     },300)
     setTimeout(() => {
@@ -59,7 +61,7 @@ function startTitleAnim() {
             title.style.opacity = "0"
             title.style.textShadow = "0px 0px 0px #000"
             title.style.transform = "rotateX(0.5turn)"
-        },1000)
-        setTimeout(()=>{title.remove()},3000)
-    },1000)
+        },2000)
+        setTimeout(()=>{title.remove()},4000)
+    },2000)
 }
