@@ -25,7 +25,7 @@ function startTitleAnim() {
     let title = t.querySelector("h1")
     title.style.opacity = "0"
     title.style.top = "0px"
-    title.style.transition = "all 0.5s"
+    title.style.transition = "all 0.5s, transform 2s"
     title.style.position = "relative"
     title.style.textShadow = "4px 24px 33px #fff"
     document.querySelector("#base").appendChild(t)
@@ -55,9 +55,11 @@ function startTitleAnim() {
             title.innerHTML += "test"
         },600)
         setTimeout(()=>{
-            title.style.fontSize = "16px"
+            title.style.fontSize = "15px"
             title.style.opacity = "0"
             title.style.textShadow = "0px 0px 0px #000"
+            title.style.transform = "rotateX(0.5turn)"
         },1000)
+        setTimeout(()=>{title.remove()},3000)
     },1000)
 }
