@@ -62,6 +62,19 @@ function startTitleAnim() {
             title.style.textShadow = "0px 0px 0px #000"
             title.style.transform = "rotateX(0.5turn)"
         },2000)
-        setTimeout(()=>{title.remove()},4000)
+        setTimeout(()=>{title.remove();startGame()},4000)
     },2000)
+    
+}
+function startGame() {
+    let r = document.querySelector("#root")
+    r.style.backgroundImage = 'url("img/court.png")'
+    r.style.backgroundSize = "contain"
+    r.style.backgroundPosition = "center"
+    r.style.backgroundRepeat = "no-repeat"
+    let b = document.querySelector("#base")
+    b.style.background = "rgba(0,0,0,0)"
+    b.style.backdropFilter = "brightness(0.7)"
+    
+
 }
