@@ -107,9 +107,10 @@ function spawnPlayer(plyrType) {
     plyrEle.src = playerAnims[plyrType+"_idle"][0]
     plyrEle.style.position = "absolute"
     plyrEle.style.left = "64px"
-    plyrEle.style.width = "120px"
+    plyrEle.style.top = Math.round(Math.random() * 90)+"%"
+    plyrEle.style.width = "100px"
     plyrEle.style.imageRendering = "pixelated"
-    plyrEle.style.height = "160px"
+    plyrEle.style.height = "140px"
     plyrEle.classList.add("p"+plyrIdx)
     plyrEle.classList.add(plyrType)
     plyrEle.classList.add("player")
