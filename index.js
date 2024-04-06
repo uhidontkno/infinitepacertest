@@ -80,6 +80,7 @@ function _arrayBufToBase64( buffer ) {
 
 let playerAnims = {}
 let players = {}
+let playerNames = []
 
 async function getPlayerAnimations() {
     let metadataRaw = await fetch("img/player/metadata.json")
@@ -116,16 +117,19 @@ function spawnPlayer(plyrType) {
     plyrEle.classList.add("player")
     document.querySelector("#base").appendChild(plyrEle)
     players["p"+plyrIdx] = {"type":plyrType,"currentAnim":"idle"}
-    return [plyrIdx,plyrEle]
+    playerNames.push("p"+plyrIdx)
+    return ["p"+plyrIdx,plyrEle]
 }
 
 function prepareGame() {
     (async ()=>{
-        await loadPlayerAnimations()
+        await loadPlayerAnimations();
+        
     })();
 }
 
 function startGame() {
+
     let r = document.querySelector("#root")
     r.style.backgroundImage = 'url("img/court.png")'
     r.style.backgroundSize = "contain"
@@ -133,6 +137,7 @@ function startGame() {
     let b = document.querySelector("#base")
     b.style.background = "rgba(0,0,0,0)"
     b.style.backdropFilter = "brightness(0.7)"
-    
-
+    spawnPlayer("bw")
+    document.querySelector(`.${playerNames[0]}`).style.top = "45vh"
+    document.querySelector(`.${playerNames[0]}`).style.left = "1%"
 }
