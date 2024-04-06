@@ -1,0 +1,4 @@
+{
+    "bw_idle" : {"length":5, "base": "player_bw_idle_"},
+    "bw_walk" : {"length":7, "base": "player_bw_walk_"}
+}

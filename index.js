@@ -56,6 +56,7 @@ function startTitleAnim() {
         setTimeout(() => {
             title.innerHTML += "test"
         },600)
+        prepareGame()
         setTimeout(()=>{
             title.style.fontSize = "15px"
             title.style.opacity = "0"
@@ -66,6 +67,44 @@ function startTitleAnim() {
     },2000)
     
 }
+
+function _arrayBufToBase64( buffer ) {
+    var binary = '';
+    var bytes = new Uint8Array( buffer );
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode( bytes[ i ] );
+    }
+    return window.btoa( binary );
+}
+
+let playerAnims = {}
+let players = {}
+
+async function getPlayerAnimations() {
+    let metadataRaw = await fetch("img/player/metadata.json")
+    let metadata = await metadataRaw.json()
+    return metadata
+}
+
+async function loadPlayerAnimations() {
+    let metadata = await getPlayerAnimations()
+    playerAnims["bw_idle"] = []
+    playerAnims["bw_walk"] = []
+    for (let i = 0; i < metadata["bw_idle"].length; i++) {
+        let imgData = await fetch(`img/player/${metadata["bw_idle"].base}${(i+1).toString().padStart(2,"0")}.png`)
+        let img = await imgData.arrayBuffer()
+        
+        playerAnims["bw_idle"][i] = "data:image/png;base64," + _arrayBufToBase64(img)
+    }
+}
+
+function prepareGame() {
+    (async ()=>{
+        await loadPlayerAnimations()
+    })();
+}
+
 function startGame() {
     let r = document.querySelector("#root")
     r.style.backgroundImage = 'url("img/court.png")'
