@@ -101,6 +101,23 @@ async function loadPlayerAnimations() {
 }
 }
 
+function spawnPlayer(type) {
+    let plyrIdx = Math.floor(Math.random() * 50000)
+    let plyrEle = document.createElement("img")
+    plyrEle.src = playerAnims[type+"_idle"][0]
+    plyrEle.style.position = "absolute"
+    plyrEle.style.left = "64px"
+    plyrEle.style.width = "120px"
+    plyrEle.style.imageRendering = "pixelated"
+    plyrEle.style.height = "160px"
+    plyrEle.classList.add("p"+plyrIdx)
+    plyrEle.classList.add(type)
+    plyrEle.classList.add("player")
+    document.querySelector("#base").appendChild(plyrEle)
+    players["p"+plyrIdx] = {"type":type,"currentAnim":idle}
+    return [plyrIdx,plyrEle]
+}
+
 function prepareGame() {
     (async ()=>{
         await loadPlayerAnimations()
