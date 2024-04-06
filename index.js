@@ -89,14 +89,16 @@ async function getPlayerAnimations() {
 
 async function loadPlayerAnimations() {
     let metadata = await getPlayerAnimations()
-    playerAnims["bw_idle"] = []
-    playerAnims["bw_walk"] = []
-    for (let i = 0; i < metadata["bw_idle"].length; i++) {
-        let imgData = await fetch(`img/player/${metadata["bw_idle"].base}${(i+1).toString().padStart(2,"0")}.png`)
+    let anims = ["idle","walk"]
+    for (let b = 0; b < anims.length; b++) {
+    playerAnims[`bw_${anims[b]}`] = []
+    for (let i = 0; i < metadata[`bw_${anims[b]}`].length; i++) {
+        let imgData = await fetch(`img/player/${metadata[`bw_${anims[b]}`].base}${(i+1).toString().padStart(2,"0")}.png`)
         let img = await imgData.arrayBuffer()
         
-        playerAnims["bw_idle"][i] = "data:image/png;base64," + _arrayBufToBase64(img)
+        playerAnims[`bw_${anims[b]}`][i] = "data:image/png;base64," + _arrayBufToBase64(img)
     }
+}
 }
 
 function prepareGame() {
